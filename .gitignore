@@ -1,0 +1,13 @@
+# electron boilerplate ignore
+
+# Node.js dependencies
+node_modules/
+.env
+# Environment variables
+
+# Debug logs
+npm-debug.log*
+
+# Generated Electron builds
+dist/
+out/

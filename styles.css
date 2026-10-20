@@ -1,0 +1,103 @@
+body {
+    background-color: rgb(63, 63, 63);
+    max-width : 1920px;
+    max-height : 100vh;
+    margin : 0;
+}
+
+
+progress {
+    display : block;
+    width: 80%;
+    height: 25px;
+    border: 0;
+    border-radius: 20px;
+    background-color: white;
+    accent-color: rgb(149, 206, 229);
+    margin : 0 auto 20px auto;
+}
+
+progress::-webkit-progress-bar {
+    background-color: white;
+    border-radius: 20px;
+}
+
+progress::-webkit-progress-value {
+    background-color: rgb(149, 206, 229);
+    border-radius: 20px;
+}
+
+progress::-moz-progress-bar {
+    background-color: rgb(149, 206, 229);
+    border-radius: 20px;
+}
+
+#bar-container {
+    width : 100%;
+    height : 0.05vh;
+    
+}
+
+#block-one {
+    display : grid;
+    position : relative;
+    width: 100%;
+    height : 80vh;
+}
+
+#block-two{
+    width: 100%;
+    height : 10vh;
+}
+
+h1{
+    color : white;
+    justify-self : center;
+}
+
+p {
+
+    justify-self : center;
+    color : white;
+}
+
+#error-message {
+    color : red;
+}
+
+form {
+    padding-bottom : 10px;
+    justify-self : center;
+}
+
+.hidden {
+    display : none;
+}
+
+.stats-block div{
+    background-color:  rgb(90, 88, 88);
+    justify-self : center;
+    height : 70vh;
+}
+
+#stat-div-one {
+    width : 20vw;
+}
+
+#stat-div-two {
+    width : 60vw;
+}
+
+.stats-block p{
+    
+    justify-self : left;
+    max-width: 10vw;
+}
+
+.stats-block {
+    display : flex;
+    width : 100%;
+    justify-content : center;
+    background-color: rgb(90, 88, 88);
+    margin : 0 auto;
+}

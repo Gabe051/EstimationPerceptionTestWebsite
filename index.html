@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+            <title>Bar Estimation</title>
+        <link rel="stylesheet" href="./styles.css" />
+        
+    </head>
+    
+    <body onload="generateBarValue()">
+        <div>
+            <div id="block-one">
+                <h1>Bar Estimation</h1>
+                <div class="stats-block">
+                    <div id="stat-div-one">
+                        <p class="stat">Prev Guess:</p>
+                        <p class="stat">Prev True Value:</p>
+                        <p class="stat">Absolute Error:</p>
+                        <br>
+                        <p>Cumulative Data</p>
+                        <p>Mean Absolute Error:</p>
+                        <p>Standard deviation:</p>
+                    </div>
+                    <div id="stat-div-two">
+
+                    </div>
+                </div>
+            </div>
+            <div id="block-two">
+                <p id="error-message" class="hidden">Value entered is not a positive integer &le; 100</p>
+                <p>Enter a percentage estimate of how full you think the progress bar is (integer value):</p>
+                <form onsubmit="return handleClick()">
+                    <input type="text" id="form-text">
+                    <input type="submit">
+                </form> 
+                <div id="bar-container">
+                    <progress id="estimate-bar" value="0" max="100"></progress>
+                </div>
+            </div>
+           
+            
+        </div>
+        
+        
+    <script src="./script.js"></script>
+    </body>
+</html>

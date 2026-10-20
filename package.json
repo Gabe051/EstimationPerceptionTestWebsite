@@ -1,0 +1,31 @@
+{
+  "name": "estimationapp",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "website",
+    "javascript",
+    "tool",
+    "data",
+    "project"
+  ],
+  "homepage": "https://github.com/Gabe051/EstimationPerceptionTestWebsite#readme",
+  "bugs": {
+    "url": "https://github.com/Gabe051/EstimationPerceptionTestWebsite/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabe051/EstimationPerceptionTestWebsite.git"
+  },
+  "license": "ISC",
+  "author": "Gabriel Curran-Rooke",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^44.9.0"
+  }
+}
