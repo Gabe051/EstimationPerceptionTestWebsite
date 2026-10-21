@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(63, 63, 63);
+    background-color: rgb(30, 30, 33);
     max-width : 1920px;
     max-height : 100vh;
     margin : 0;
@@ -75,7 +75,7 @@ form {
 }
 
 .stats-block div{
-    background-color:  rgb(90, 88, 88);
+    background-color:  rgb(60, 64, 67);
     justify-self : center;
     height : 70vh;
 }
@@ -104,7 +104,7 @@ form {
     display : flex;
     width : 100%;
     justify-content : center;
-    background-color: rgb(90, 88, 88);
+    background-color: rgb(60, 64, 67);
     margin : 0 auto;
 }
 
