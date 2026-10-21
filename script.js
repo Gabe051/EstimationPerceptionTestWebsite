@@ -5,6 +5,11 @@ let new_values = [];
 let mean_absolute_error = 0.0;
 let standard_deviation = 0.0;
 
+let mean_error_p = document.getElementById('meanErrorText');
+let stddev_p = document.getElementById('stdDevText');
+let prev_guess_p = document.getElementById('prevGuessText');
+let prev_true_p = document.getElementById('prevTrueText');
+let prev_error_p = document.getElementById('prevErrorText');
 //Carousel slides
 const cslides = document.querySelectorAll('.carousel-page');
 let current_slide = 0;
@@ -137,7 +142,7 @@ function showSlide(index){
 
     current_slide = (cslides.length + index) % cslides.length;
     cslides[current_slide].classList.add('active');
-    console.log("Changing slide?");
+    
     switch(current_slide){
         case 0:
             scatterPlot.resize();
@@ -178,14 +183,33 @@ function updateGraphs(){
     pieChart.resize();
 }
 
+function calculateValues(){
+    let sum_error = 0;
+    for(let i = 0; i < chart_values.length; i++){
+        sum_error += chart_values[i][0];
+    }
+
+    mean_absolute_error = (sum_error / chart_values.length).toFixed(2);
+
+    const squareDifference = chart_values.map(row => (Number(row[0])- mean_absolute_error) ** 2);
+    const variance = squareDifference.reduce((sum,value) => sum + value, 0) / chart_values.length;
+    standard_deviation = Math.sqrt(variance).toFixed(2); 
+
+    mean_error_p.textContent = ('Mean Absolute Error: ' + mean_absolute_error);
+    stddev_p.textContent = ('Standard Deviation: ' + standard_deviation);
+    
+}
 
 async function initialiseValues(){ 
     previous_values = await window.electron.readFile();
     chart_values = previous_values.slice();
     
+    console.log("CHART VALUES HERE");
+    console.log(chart_values);
+    
+    calculateValues();
     updateGraphs();
-    //mean_absolute_error = previous_values.length > 0 ? ((previous_values.reduce(a,b)=>a+b,0) / previous_values.length) : 0.0;
-
+    console.log("recalculated values");
 }
 
 function generateBarValue(){
@@ -196,12 +220,9 @@ function generateBarValue(){
 
 
 async function handleClick(event){
-    console.log("Handling Click");
     event.preventDefault();
-
     const form = document.getElementById("form-text");
     const error_p = document.getElementById("error-message");
-    console.log("retrieved document objects");
     let num = form.value
     
     num = num.replace('%', '');
@@ -214,7 +235,6 @@ async function handleClick(event){
         return;
     }
 
-    console.log("Verified number");
         
     error_p.classList.add("hidden");
     
@@ -235,7 +255,12 @@ async function handleClick(event){
     new_values.push([abs_error, percentage_error, overshot, random_val, parsed_num]);
     
     chart_values.push([abs_error, percentage_error, overshot, random_val, parsed_num]);
-    console.log("Chart values: ");
-    console.log(chart_values);
+    
+    prev_guess_p.textContent = "Prev Guess: " + parsed_num.toFixed(2);
+    prev_true_p.textContent = "Prev True Value: " + random_val.toFixed(2);
+    prev_error_p.textContent = "Absolute Error: " + abs_error.toFixed(2);
+
+    calculateValues();
+    generateBarValue();
     updateGraphs();
 }
