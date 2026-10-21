@@ -7,32 +7,48 @@
             content="width=device-width, initial-scale=1.0" />
             <title>Bar Estimation</title>
         <link rel="stylesheet" href="./styles.css" />
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     </head>
     
-    <body onload="generateBarValue()">
+    <body>
         <div>
             <div id="block-one">
                 <h1>Bar Estimation</h1>
                 <div class="stats-block">
                     <div id="stat-div-one">
-                        <p class="stat">Prev Guess:</p>
-                        <p class="stat">Prev True Value:</p>
-                        <p class="stat">Absolute Error:</p>
+                        <p id="prevGuessText" class="stat">Prev Guess:</p>
+                        <p id="prevTrueText" class="stat">Prev True Value:</p>
+                        <p id="prevErrorText" class="stat">Absolute Error:</p>
                         <br>
                         <p>Cumulative Data</p>
-                        <p>Mean Absolute Error:</p>
-                        <p>Standard deviation:</p>
+                        <p id="meanErrorText" class="stat">Mean Absolute Error:</p>
+                        <p id="stdDevText" class="stat">Standard deviation:</p>
                     </div>
-                    <div id="stat-div-two">
+                    <div id="stat-div-two"> 
+                        <button  class="carouselbtn" id="prevChart">
+                            <img src="images/leftArrow.png" height="50">
+                        </button>
+                        <div class="carousel-page active">
+                            <canvas id="scatterplot" class="graph"></canvas>
+                        </div>
+                        
+                        <div class="carousel-page">
+                            <div class="piecontainer">
+                                <canvas id="piechart" class="graph"></canvas>
+                            </div>
+                        </div>
 
+                        
+                        <button  class="carouselbtn" id="nextChart">
+                            <img src="images/rightArrow.png" height="50">
+                        </button>
                     </div>
                 </div>
             </div>
             <div id="block-two">
                 <p id="error-message" class="hidden">Value entered is not a positive integer &le; 100</p>
                 <p>Enter a percentage estimate of how full you think the progress bar is (integer value):</p>
-                <form onsubmit="return handleClick()">
+                <form onsubmit="return handleClick(event)">
                     <input type="text" id="form-text">
                     <input type="submit">
                 </form> 
