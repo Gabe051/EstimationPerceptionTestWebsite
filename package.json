@@ -1,5 +1,7 @@
 {
   "name": "estimationapp",
+  "productName": "Estimation App",
+  "author": "Gabriel Curran-Rooke",
   "version": "1.0.0",
   "description": "",
   "keywords": [
@@ -18,17 +20,21 @@
     "url": "git+https://github.com/Gabe051/EstimationPerceptionTestWebsite.git"
   },
   "license": "ISC",
-  "author": "Gabriel Curran-Rooke",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
   },
   "devDependencies": {
-    "electron": "^44.9.0"
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3"
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0"
+  },
+  "build": {
+    "appId": "com.GabrielCurranRooke.EstimationApp"
   }
 }
