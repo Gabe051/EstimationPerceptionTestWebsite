@@ -5,12 +5,13 @@ let new_values = [];
 let mean_absolute_error = 0.0;
 let standard_deviation = 0.0;
 
+// Text stat elements
 let mean_error_p = document.getElementById('meanErrorText');
 let stddev_p = document.getElementById('stdDevText');
 let prev_guess_p = document.getElementById('prevGuessText');
 let prev_true_p = document.getElementById('prevTrueText');
 let prev_error_p = document.getElementById('prevErrorText');
-//Carousel slides
+//Carousel slides elements
 const cslides = document.querySelectorAll('.carousel-page');
 let current_slide = 0;
 
@@ -49,6 +50,59 @@ let pieChart = new Chart(piectx,{
                     },*/
                     color: 'white'
                 }
+            }
+        }
+    }
+});
+
+const boxplotctx = document.getElementById('boxplot').getContext('2d');
+let boxplot = new Chart(boxplotctx,{
+    type:'boxplot',
+    data: {
+        labels: ['0-24%', '25-49%', '50-74%', '75-100%'],
+        datasets: [
+            {
+
+                data: [ [],[],[],[]],
+                backgroundColor: [
+                    'rgba(244, 244, 244, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(251, 191, 38, 0.8)',
+                    'rgba(248, 78, 115, 0.8)',
+                ],
+                borderColor: 'white',
+                borderWidth: '1',
+                outlierColor: 'white'
+            }
+        ]
+    },
+    
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false,
+                labels: {
+                    color:'white'
+                }
+            }
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Percentage Range of True Value',
+                    color: 'white',
+                },
+                ticks: {color: 'white'}
+            },
+            y: { 
+                title: {
+                    display: true,
+                    text: 'Absolute Error',
+                    color: 'white'
+                },
+                ticks: {color: 'white'}
             }
         }
     }
@@ -155,14 +209,23 @@ function showSlide(index){
 
 function updateGraphs(){
     let scatter_data = [];
-    
+    let boxplots = [[],[],[],[]];
     for(let i = 0; i < chart_values.length; i++){
         scatter_data.push({x: chart_values[i][3], y: chart_values[i][4]});
+        
+        let trueval = chart_values[i][3];
+        if( 0 <= trueval && trueval < 25) boxplots[0].push(chart_values[i][0]);
+        if( 25 <= trueval && trueval < 50) boxplots[1].push(chart_values[i][0]);
+        if( 50 <= trueval && trueval < 75) boxplots[2].push(chart_values[i][0]);
+        if( 75 <= trueval && trueval <= 100) boxplots[3].push(chart_values[i][0]);
     }
+
     scatterPlot.data.datasets[0].data = scatter_data;
 
     scatterPlot.update();
 
+    boxplot.data.datasets[0].data = boxplots;
+    boxplot.update();
     let pievalues = [0,0,0];
 
     for(const row of chart_values){
