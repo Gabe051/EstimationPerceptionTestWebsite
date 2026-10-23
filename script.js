@@ -21,7 +21,25 @@ document.getElementById('prevChart').addEventListener('click', () => {
 
 document.getElementById('nextChart').addEventListener('click', () => {
     showSlide(current_slide + 1);
-})
+});
+
+document.getElementById('download-data').addEventListener('click', ()=> {
+    // create blob with csv file format
+    let blobCsvContent = "abs-error,percentage,overshot-undershot,trueval,guessval\r\n";
+    let data_copy = chart_values;
+
+    const blob = new Blob([blobCsvContent + data_copy.map(row => row.join(',')).join('\r\n')], {type: "text/csv"});
+    const a = document.createElement('a');
+    a.href = window.URL.createObjectURL(blob);
+    a.download = "Estimation-Data.csv";
+
+    document.body.appendChild(a);
+    a.style.display = "none";
+    a.click();
+    window.URL.revokeObjectURL(a.href);
+    document.body.removeChild(a);
+
+});
 
 const piectx = document.getElementById('piechart').getContext('2d');
 let pieChart = new Chart(piectx,{

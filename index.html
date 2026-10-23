@@ -23,6 +23,8 @@
                         <hr>
                         <p id="meanErrorText" class="stat">Mean Absolute Error:</p>
                         <p id="stdDevText" class="stat">Standard deviation:</p>
+                        <hr>
+                        <button id="download-data">Download Data</button>
                     </div>
                     <div id="stat-div-two"> 
                         <button  class="carouselbtn" id="prevChart">
@@ -41,7 +43,13 @@
                         <div class="carousel-page">
                             <canvas id="boxplot" class="graph"></canvas>
                         </div>
-                        
+
+                        <div class="carousel-page">
+                            <div class="hans-container">
+                                <img src="images/hans2.jpg">
+                            </div>
+                            
+                        </div>
                         <button  class="carouselbtn" id="nextChart">
                             <img src="images/rightArrow.png" height="50">
                         </button>
@@ -57,6 +65,7 @@
                 </form> 
                 <div id="bar-container">
                     <progress id="estimate-bar" value="0" max="100"></progress>
+                    
                 </div>
             </div>
            

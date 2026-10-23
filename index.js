@@ -41,7 +41,7 @@ ipcMain.handle('read-file', async () => {
     await ensureCsvFile(filepath);
     // should read the csv file as a string
     const readcsv = await fs.readFile(filepath, 'utf8');
-
+    
     // trim the white space and /../ syntax denotes a regular expression to be passed as a 
     // parameter to split the string into rows, and filtering out empty rows
     const rows = readcsv.trim().split(/\r?\n/).filter(row => row.trim() !== '');
@@ -51,7 +51,7 @@ ipcMain.handle('read-file', async () => {
 });
 
 ipcMain.handle('write-file', async (event, values) => {
-    console.log("Write file main handler sstarted");
+    console.log("Write file main handler started");
     const filepath = filePath();
 
     await ensureCsvFile(filepath);
