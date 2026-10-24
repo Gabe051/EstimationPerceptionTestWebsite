@@ -276,8 +276,8 @@ function calculateValues(){
     const variance = squareDifference.reduce((sum,value) => sum + value, 0) / chart_values.length;
     standard_deviation = Math.sqrt(variance).toFixed(2); 
 
-    mean_error_p.textContent = ('Mean Absolute Error: ' + mean_absolute_error);
-    stddev_p.textContent = ('Standard Deviation: ' + standard_deviation);
+    mean_error_p.textContent = "Mean Absolute Error: " + (!isNaN(mean_absolute_error) ? mean_absolute_error : "");
+    stddev_p.textContent = "Standard Deviation: " + (!isNaN(standard_deviation) ? standard_deviation : "");
     
 }
 
